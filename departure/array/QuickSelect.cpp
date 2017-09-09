@@ -25,7 +25,7 @@ int partition(vector<int> &array, int start, int end, bool greater) {
                 right--;
             while (left <= right && pivot < array[left])
                 left++;
-        } else { // decreasing order
+        } else { // increasing order
             while(left < right && pivot < array[right])
                 right--;
 
@@ -39,7 +39,7 @@ int partition(vector<int> &array, int start, int end, bool greater) {
         if (left < end && pivot > array[left]) { // e.g. [2,1], [1,2]
             swap(array[left], array[end]);
         }
-    } else { // decreasing order
+    } else { // increasing order
         if (left < end && pivot < array[left]) {
             swap(array[left], array[end]);
         }
