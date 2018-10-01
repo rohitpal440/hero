@@ -28,22 +28,30 @@ vector <int> getLongestPrefixSuffixArray(const string &s) {
 pair<bool, int> kmpPatterSearch(const string &pattern, const string &text) {
     auto lps = getLongestPrefixSuffixArray(pattern);
     int i, patternIndex = 0;
+    vector<int> startingIndexMatches;
     for (i = 0; i < text.size() && patternIndex < pattern.size(); i++) {
         if (text[i] == pattern[patternIndex]) {
             patternIndex++;
-        } else if (patternIndex > 0) {
+            if (patternIndex == pattern.size()) { // to find multiple occurrence
+                startingIndexMatches.push_back(i - patternIndex + 1);
+                cout << "Found pattern at index: " << i - patternIndex + 1 << endl;
+                cout << text.substr(i - patternIndex + 1, pattern.size()) << endl;
+                patternIndex = lps[--patternIndex];
+                i--;
+            }
+        } else if (patternIndex > 0 && patternIndex < pattern.size()) {
             patternIndex = lps[patternIndex - 1];
             i--;
         }
     }
-    if (patternIndex == pattern.size()) {
-        return make_pair(true, i - patternIndex);
+    if (!startingIndexMatches.empty()) {
+        return make_pair(true, startingIndexMatches.front());
     }
     return make_pair(false, -1);
 }
 
 int main() {
-    string text = "abxabcabcaby";//"abcbclgx";
+    string text = "abxabcabcabyababcaby";//"abcbclgx";
     string pattern = "abcaby";//"bclg";
     auto result = kmpPatterSearch(pattern, text);
     if (result.first) {
