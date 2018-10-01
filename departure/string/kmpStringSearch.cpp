@@ -1,9 +1,14 @@
+// KMP String search algorithm
+// Algorithm to find the pattern in a string
+
 #include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
+// Create an array which contains the size of suffix which is also prefix
+// of the string which ends at that index
 vector <int> getLongestPrefixSuffixArray(const string &s) {
     vector<int> lps(s.size());
     int j = 0;

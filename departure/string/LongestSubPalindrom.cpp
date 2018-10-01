@@ -29,7 +29,7 @@ pair<string, pair<int, int> > getSubPallindrom(const string &originalString) {
         if (i <= right) {
             radius = min(p[2 * center - i], right - i);
         } else {
-            radius = 0;
+            radius = 0; // could be 1
         }
         while(i + radius < s.size() && i - radius >= 0 && s[i - radius] == s[i + radius])
             radius++;

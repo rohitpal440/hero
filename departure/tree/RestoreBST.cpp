@@ -21,7 +21,7 @@ class BSTRestorer {
 
     void findMisplacedNodes(Node *root) {
         if (!root)
-        return;
+            return;
         findMisplacedNodes(root->left);
         if (previousNode && previousNode -> data > root -> data) {
             if (!firstMisplacedNode) {

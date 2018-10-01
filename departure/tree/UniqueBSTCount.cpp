@@ -14,9 +14,9 @@ class UniqueBstCounter {
         int uniqueBST = 0;
         for (int i = 0; i < n; i++) {
             if (solutions[i] == INT_MIN)
-            solutions[i] = getUniqueBSTCount(i, solutions);
+                solutions[i] = getUniqueBSTCount(i, solutions);
             if (solutions[n - i - 1] == INT_MIN)
-            solutions[n - i - 1] = getUniqueBSTCount(n - i - 1, solutions);
+                solutions[n - i - 1] = getUniqueBSTCount(n - i - 1, solutions);
             uniqueBST += solutions[i] * solutions[n - i - 1];
         }
         return uniqueBST;
